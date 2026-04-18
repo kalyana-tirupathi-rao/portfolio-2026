@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalyana Tirupathi Rao - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-brand">
+        <a href="#hero" class="logo">KTR</a>
+      </div>
+      <button class="hamburger" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <div class="hero-particles" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-avatar">
+          <img src="profile.jpg" alt="Kalyana Tirupathi Rao - Data Engineer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" aria-hidden="true"><i class="fas fa-user"></i></div>
+        </div>
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1>Kalyana Tirupathi Rao</h1>
+        <p class="hero-subtitle"><span class="typing-text">Data Engineer</span><span class="cursor">|</span></p>
+        <p class="hero-tagline">Building scalable data pipelines and transforming raw data into actionable insights with expertise in Azure, Databricks, and ETL solutions.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="cta-button"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+          <a href="#projects" class="cta-button cta-outline"><i class="fas fa-code"></i> View Projects</a>
+        </div>
+        <div class="hero-scroll-indicator" aria-hidden="true">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-container">
+        <h2>About Me</h2>
+        <p class="about-summary">
+          Aspiring Data Engineer with hands-on experience in SQL, Python, Databricks, Azure Data Factory, ETL pipelines, and data migration. Passionate about building scalable data solutions and transforming complex datasets into meaningful insights.
+        </p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number" data-target="11">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Months Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Projects Completed</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Technical Skills</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="2">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Internships</span>
+          </div>
+        </div>
+        <div class="about-details">
+          <div class="about-item">
+            <div class="about-icon"><i class="fas fa-briefcase"></i></div>
+            <strong>Experience</strong>
+            <p>0 years 11 months</p>
+          </div>
+          <div class="about-item">
+            <div class="about-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <strong>Location</strong>
+            <p>Kakinada, India</p>
+          </div>
+          <div class="about-item">
+            <div class="about-icon"><i class="fas fa-heart"></i></div>
+            <strong>Hobbies</strong>
+            <ul class="hobbies-list">
+              <li>Listening to Technology Podcasts</li>
+              <li>Reading Tech Blogs</li>
+              <li>Watching Webinars on Data Engineering and AI</li>
+            </ul>
+          </div>
+          <div class="about-item">
+            <div class="about-icon"><i class="fas fa-language"></i></div>
+            <strong>Languages</strong>
+            <ul class="languages-list">
+              <li>English</li>
+              <li>Telugu</li>
+              <li>Hindi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-container">
+        <h2>Skills</h2>
+        <div class="skills-layout">
+          <div class="skills-bars">
+            <h3><i class="fas fa-chart-bar"></i> Proficiency</h3>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Python</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>SQL</span><span class="skill-percent">90%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Azure Data Factory</span><span class="skill-percent">80%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Databricks / PySpark</span><span class="skill-percent">75%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>ETL Pipelines</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Machine Learning</span><span class="skill-percent">65%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-width="65"></div></div>
+            </div>
+          </div>
+          <div class="skills-tags-section">
+            <div class="skills-category">
+              <h3><i class="fas fa-code"></i> Programming</h3>
+              <div class="skills-group">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Data Structures</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+              </div>
+            </div>
+            <div class="skills-category">
+              <h3><i class="fas fa-database"></i> Data Engineering</h3>
+              <div class="skills-group">
+                <span class="skill-tag">PySpark</span>
+                <span class="skill-tag">Databricks</span>
+                <span class="skill-tag">ETL Pipelines</span>
+                <span class="skill-tag">Azure Data Factory</span>
+              </div>
+            </div>
+            <div class="skills-category">
+              <h3><i class="fas fa-brain"></i> Data Science & AI</h3>
+              <div class="skills-group">
+                <span class="skill-tag">Artificial Intelligence</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Data Science</span>
+                <span class="skill-tag">Data Science Analyst</span>
+              </div>
+            </div>
+            <div class="skills-category">
+              <h3><i class="fas fa-tools"></i> Tools & Other</h3>
+              <div class="skills-group">
+                <span class="skill-tag">Excel</span>
+                <span class="skill-tag">PowerPoint</span>
+                <span class="skill-tag">Problem Solving</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-container">
+        <h2>Experience</h2>
+        <div class="experience-subsection">
+          <h3>Professional Experience</h3>
+          <div class="experience-entry">
+            <h4>Data Engineer</h4>
+            <p class="experience-company">Cliff IT Solutions</p>
+            <p class="experience-date">Apr 2025 - Present</p>
+            <p class="experience-description">Building and maintaining scalable data pipelines using Azure Data Factory, Databricks, PySpark, and SQL. Responsible for designing ETL workflows, optimizing data transformations, and ensuring data quality across enterprise systems.</p>
+          </div>
+        </div>
+        <div class="experience-subsection">
+          <h3>Internships</h3>
+          <div class="experience-entry">
+            <h4>Data Science and Machine Learning Virtual Internship</h4>
+            <p class="experience-company">Edureka</p>
+            <p class="experience-date">6 months</p>
+            <p class="experience-description">Developed machine learning models and performed data analysis on real-world datasets. Gained hands-on experience with supervised and unsupervised learning algorithms, data preprocessing, and model evaluation techniques.</p>
+          </div>
+          <div class="experience-entry">
+            <h4>Machine Learning using Python – Summer Internship</h4>
+            <p class="experience-company">IIIT Hyderabad</p>
+            <p class="experience-date">3 months</p>
+            <p class="experience-description">Implemented machine learning algorithms using Python, including regression, classification, and clustering techniques. Worked on data preprocessing, feature engineering, and model optimization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>APAC Data Pipeline Migration</h3>
+            <p class="project-duration">2025</p>
+            <p class="project-description">Migrated legacy data pipelines to Azure cloud infrastructure, redesigning workflows for improved scalability and performance across the APAC region.</p>
+            <div class="project-technologies">
+              <span class="tech-tag">Azure Data Factory</span>
+              <span class="tech-tag">Databricks</span>
+              <span class="tech-tag">PySpark</span>
+              <span class="tech-tag">SQL</span>
+            </div>
+            <p class="project-achievement">Reduced processing time by 30%</p>
+          </div>
+          <div class="project-card">
+            <h3>End-to-End ETL Pipeline using Azure Data Factory and Databricks</h3>
+            <p class="project-duration">2024</p>
+            <p class="project-description">Built a complete ETL pipeline from data ingestion to transformation and loading, ensuring data integrity and reliability across multiple data sources.</p>
+            <div class="project-technologies">
+              <span class="tech-tag">Azure Data Factory</span>
+              <span class="tech-tag">Databricks</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">SQL</span>
+            </div>
+            <p class="project-achievement">Achieved 99.9% data accuracy</p>
+          </div>
+          <div class="project-card">
+            <h3>Sales Data Analytics Dashboard</h3>
+            <p class="project-duration">2024</p>
+            <p class="project-description">Created an interactive dashboard for visualizing sales data trends, enabling stakeholders to make data-driven decisions with real-time insights.</p>
+            <div class="project-technologies">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Excel</span>
+              <span class="tech-tag">PowerPoint</span>
+            </div>
+            <p class="project-achievement">Improved decision-making efficiency</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-container">
+        <h2>Education</h2>
+        <div class="education-entries">
+          <div class="education-entry">
+            <h3>B.Tech/B.E. in Computers</h3>
+            <p class="education-institution">Kakinada Institute of Engineering and Technology</p>
+            <p class="education-year">2025</p>
+            <p class="education-grade">Grade: 7.2/10</p>
+          </div>
+          <div class="education-entry">
+            <h3>12th Grade</h3>
+            <p class="education-institution">Andhra Pradesh</p>
+            <p class="education-year">2021</p>
+            <p class="education-grade">Marks: 85-89.9%</p>
+          </div>
+          <div class="education-entry">
+            <h3>10th Grade</h3>
+            <p class="education-institution">Andhra Pradesh</p>
+            <p class="education-year">2019</p>
+            <p class="education-grade">Marks: 88%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-container">
+        <h2>Contact</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <strong>Email</strong>
+            <a href="mailto:kalyanatirupathirao@gmail.com">kalyanatirupathirao@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <strong>Phone</strong>
+            <a href="tel:+919494747920">+91-9494747920</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+            <strong>LinkedIn</strong>
+            <a href="https://www.linkedin.com/in/kalyana-tirupathi-rao/" target="_blank" rel="noopener noreferrer">kalyana-tirupathi-rao</a>
+          </div>
+        </div>
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <div class="error-message"></div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error-message"></div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+            <div class="error-message"></div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+            <div class="error-message"></div>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/kalyana-tirupathi-rao/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="mailto:kalyanatirupathirao@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+      <p class="copyright">&copy; <span class="copyright-year">2026</span> Kalyana Tirupathi Rao. All rights reserved.</p>
+    </div>
+  </footer>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+</body>
+</html>
