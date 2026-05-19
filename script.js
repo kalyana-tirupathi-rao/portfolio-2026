@@ -334,11 +334,32 @@ function handleFormSubmit(event) {
     });
   } else {
     // Show success message and reset form
-    var successDiv = document.createElement('div');
-    successDiv.className = 'success-message';
-    successDiv.textContent = 'Thank you for your message!';
-    form.appendChild(successDiv);
-    form.reset();
+    // Send data to Google Sheets
+fetch("https://script.google.com/macros/s/AKfycbxJGB7BMncNepQ2pcAg-klmcJ8v547J1cwJa2euCfD-mvrIEZ604CBNbYwkCEHDocOV0Q/exec", {
+  method: "POST",
+  body: JSON.stringify(formData)
+})
+.then(function(response) {
+  return response.json();
+})
+.then(function(data) {
+
+  var successDiv = document.createElement('div');
+  successDiv.className = 'success-message';
+  successDiv.textContent = 'Message sent successfully!';
+  form.appendChild(successDiv);
+
+  form.reset();
+
+})
+.catch(function(error) {
+
+  var errorDiv = document.createElement('div');
+  errorDiv.className = 'error-message';
+  errorDiv.textContent = 'Failed to send message!';
+  form.appendChild(errorDiv);
+
+  console.error(error);
   }
 }
 
