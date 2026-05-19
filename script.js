@@ -360,6 +360,8 @@ fetch("https://script.google.com/macros/s/AKfycbxJGB7BMncNepQ2pcAg-klmcJ8v547J1c
   form.appendChild(errorDiv);
 
   console.error(error);
+
+});
   }
 }
 
