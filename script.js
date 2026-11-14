@@ -94,6 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
     yearSpan.textContent = new Date().getFullYear();
   }
 
+  // Keep experience figures current (career start: April 2025)
+  var experienceMonths = getMonthsSince(CAREER_START, new Date());
+  var monthsCounter = document.querySelector('.experience-months');
+  if (monthsCounter) {
+    monthsCounter.dataset.target = experienceMonths;
+  }
+  var durationText = document.querySelector('.experience-duration');
+  if (durationText) {
+    durationText.textContent = formatDuration(experienceMonths);
+  }
+
   // Initialize scroll animations
   initScrollAnimations();
 
@@ -254,6 +265,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+var CAREER_START = { year: 2025, month: 4 }; // April 2025, 1-based month
+
+/**
+ * Whole calendar months elapsed from a {year, month} start (1-based month)
+ * to the given date, e.g. Apr 2025 -> Nov 2026 = 19. Never negative.
+ */
+function getMonthsSince(start, now) {
+  var months = (now.getFullYear() - start.year) * 12 + (now.getMonth() + 1 - start.month);
+  return Math.max(months, 0);
+}
+
+/**
+ * Format a month count as e.g. "1 year 7 months", "11 months", "2 years".
+ */
+function formatDuration(totalMonths) {
+  var years = Math.floor(totalMonths / 12);
+  var months = totalMonths % 12;
+  var parts = [];
+  if (years > 0) parts.push(years + (years === 1 ? ' year' : ' years'));
+  if (months > 0 || years === 0) parts.push(months + (months === 1 ? ' month' : ' months'));
+  return parts.join(' ');
+}
 
 /**
  * Validate contact form data (pure function — no DOM access).
@@ -436,5 +470,5 @@ function initScrollAnimations() {
 
 // Export for testing (Node.js / CommonJS compatibility)
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { toggleMobileMenu, closeMobileMenu, scrollToSection, validateContactForm, handleFormSubmit, initScrollAnimations };
+  module.exports = { toggleMobileMenu, closeMobileMenu, scrollToSection, validateContactForm, handleFormSubmit, initScrollAnimations, getMonthsSince, formatDuration };
 }
