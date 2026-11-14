@@ -307,11 +307,11 @@ function handleFormSubmit(event) {
     div.textContent = '';
   });
 
-  // Remove any existing success message
-  var existingSuccess = form.querySelector('.success-message');
-  if (existingSuccess) {
-    existingSuccess.remove();
-  }
+  // Remove any existing success / failure status message
+  var existingStatus = form.querySelectorAll('.success-message, .form-status');
+  existingStatus.forEach(function (el) {
+    el.remove();
+  });
 
   if (!result.valid) {
     // Map errors to their respective fields
@@ -333,36 +333,75 @@ function handleFormSubmit(event) {
       }
     });
   } else {
-    // Show success message and reset form
-    // Send data to Google Sheets
-fetch("https://script.google.com/macros/s/AKfycbxJGB7BMncNepQ2pcAg-klmcJ8v547J1cwJa2euCfD-mvrIEZ604CBNbYwkCEHDocOV0Q/exec", {
-  method: "POST",
-  body: JSON.stringify(formData)
-})
-.then(function(response) {
-  return response.json();
-})
-.then(function(data) {
+    // Prevent duplicate submissions while the request is in flight
+    var submitButton = form.querySelector('button[type="submit"]');
+    var originalButtonText = submitButton ? submitButton.textContent : '';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
 
-  var successDiv = document.createElement('div');
-  successDiv.className = 'success-message';
-  successDiv.textContent = 'Message sent successfully!';
-  form.appendChild(successDiv);
+    var trimmedData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim()
+    };
 
-  form.reset();
+    // Send data to Google Sheets (Apps Script web app)
+    fetch(GOOGLE_SHEETS_URL, {
+      method: 'POST',
+      body: JSON.stringify(trimmedData)
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Request failed with status ' + response.status);
+        }
+        return response.text();
+      })
+      .then(function (text) {
+        // The script may reply with JSON or plain text; only fail on an explicit error.
+        var data = null;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          data = null;
+        }
+        if (data && (data.result === 'error' || data.status === 'error')) {
+          throw new Error(data.message || data.error || 'Server reported an error');
+        }
 
-})
-.catch(function(error) {
-
-  var errorDiv = document.createElement('div');
-  errorDiv.className = 'error-message';
-  errorDiv.textContent = 'Failed to send message!';
-  form.appendChild(errorDiv);
-
-  console.error(error);
-
-});
+        showFormStatus(form, 'success-message', 'Message sent successfully!');
+        form.reset();
+      })
+      .catch(function (error) {
+        showFormStatus(form, 'form-status form-status-error', 'Failed to send message. Please try again or email me directly.');
+        console.error(error);
+      })
+      .then(function () {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      });
   }
+}
+
+var GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxJGB7BMncNepQ2pcAg-klmcJ8v547J1cwJa2euCfD-mvrIEZ604CBNbYwkCEHDocOV0Q/exec';
+
+/**
+ * Show a single status message at the bottom of the form, replacing any previous one.
+ */
+function showFormStatus(form, className, text) {
+  var existing = form.querySelectorAll('.success-message, .form-status');
+  existing.forEach(function (el) {
+    el.remove();
+  });
+  var statusDiv = document.createElement('div');
+  statusDiv.className = className;
+  statusDiv.setAttribute('role', 'status');
+  statusDiv.textContent = text;
+  form.appendChild(statusDiv);
 }
 
 /**
