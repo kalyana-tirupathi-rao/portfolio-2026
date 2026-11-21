@@ -18,7 +18,7 @@ describe('HTML Structure and Content', () => {
     expect(document.querySelector('main')).not.toBeNull();
     expect(document.querySelector('footer')).not.toBeNull();
 
-    const expectedSections = ['hero', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+    const expectedSections = ['hero', 'about', 'experience', 'projects', 'skills', 'education', 'certifications', 'interests', 'contact'];
     for (const id of expectedSections) {
       expect(document.querySelector(`section#${id}`), `section#${id} should exist`).not.toBeNull();
     }
@@ -37,11 +37,11 @@ describe('HTML Structure and Content', () => {
     expect(cta.getAttribute('href')).toBe('#contact');
   });
 
-  it('should have navigation with all 6 section links', () => {
+  it('should have navigation with all 8 section links', () => {
     const navLinks = document.querySelectorAll('.nav-links a');
-    expect(navLinks.length).toBe(6);
+    expect(navLinks.length).toBe(8);
 
-    const expectedHrefs = ['#about', '#skills', '#experience', '#projects', '#education', '#contact'];
+    const expectedHrefs = ['#about', '#experience', '#projects', '#skills', '#education', '#certifications', '#interests', '#contact'];
     const actualHrefs = Array.from(navLinks).map(link => link.getAttribute('href'));
     expect(actualHrefs).toEqual(expectedHrefs);
   });

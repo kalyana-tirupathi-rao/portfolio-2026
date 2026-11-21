@@ -59,16 +59,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // CTA button smooth scroll
+  // CTA button smooth scroll (in-page links only; external links open normally)
   const ctaButtons = document.querySelectorAll('.cta-button');
   ctaButtons.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
-      e.preventDefault();
       const href = btn.getAttribute('href');
       if (href && href.startsWith('#')) {
+        e.preventDefault();
         scrollToSection(href.substring(1));
       }
     });
+  });
+
+  // Close the mobile menu with the Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMobileMenu();
   });
 
   // Contact form submit listener
@@ -121,48 +126,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Typing animation for hero subtitle
-  var typingTexts = ['Data Engineer', 'ETL Developer', 'Azure Specialist', 'Python Developer'];
-  var typingEl = document.querySelector('.typing-text');
-  if (typingEl) {
-    var textIndex = 0;
-    var charIndex = 0;
-    var isDeleting = false;
-    var typingSpeed = 100;
-
-    function typeEffect() {
-      var current = typingTexts[textIndex];
-      if (isDeleting) {
-        typingEl.textContent = current.substring(0, charIndex - 1);
-        charIndex--;
-        typingSpeed = 50;
-      } else {
-        typingEl.textContent = current.substring(0, charIndex + 1);
-        charIndex++;
-        typingSpeed = 100;
-      }
-
-      if (!isDeleting && charIndex === current.length) {
-        typingSpeed = 2000;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % typingTexts.length;
-        typingSpeed = 500;
-      }
-
-      setTimeout(typeEffect, typingSpeed);
-    }
-
-    setTimeout(typeEffect, 1000);
-  }
-
-  // Animated counters
+  // Animated counters (skipped when the visitor prefers reduced motion)
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function animateCounters() {
     var counters = document.querySelectorAll('.stat-number');
     counters.forEach(function (counter) {
       if (counter.dataset.animated) return;
       var target = parseInt(counter.dataset.target, 10);
+      if (prefersReducedMotion || isNaN(target)) {
+        if (!isNaN(target)) counter.textContent = target;
+        counter.dataset.animated = 'true';
+        return;
+      }
       var duration = 1500;
       var start = 0;
       var startTime = null;
@@ -183,54 +158,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Skill bar fill animation
-  function animateSkillBars() {
-    var bars = document.querySelectorAll('.skill-bar-fill');
-    bars.forEach(function (bar) {
-      if (bar.dataset.animated) return;
-      var width = bar.dataset.width;
-      bar.style.width = width + '%';
-      bar.dataset.animated = 'true';
-    });
-  }
-
-  // Observe stats and skills sections for counter/bar animations
+  // Animate the About stats when they scroll into view
   if (typeof IntersectionObserver !== 'undefined') {
     var aboutSection = document.getElementById('about');
-    var skillsSection = document.getElementById('skills');
-
     var featureObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          if (entry.target.id === 'about') animateCounters();
-          if (entry.target.id === 'skills') animateSkillBars();
-        }
+        if (entry.isIntersecting) animateCounters();
       });
     }, { threshold: 0.3 });
-
     if (aboutSection) featureObserver.observe(aboutSection);
-    if (skillsSection) featureObserver.observe(skillsSection);
-  }
-
-  // Tilt effect on project cards (desktop only — skip on touch devices)
-  var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (!isTouchDevice) {
-    var projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect = card.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
-        var centerX = rect.width / 2;
-        var centerY = rect.height / 2;
-        var rotateX = ((y - centerY) / centerY) * -5;
-        var rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px)';
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-      });
-    });
   }
 
   // Back to top button
